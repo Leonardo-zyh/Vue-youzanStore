@@ -1,46 +1,113 @@
 <template>
   <div class="hello">
-    <h1>Hellow World</h1>
-    <h2>{{ msg }}</h2>
-    <h2>{{$route.params.msg}}</h2>
-    <button @click="getData">GET发送请求</button>
-    <button @click="getData">POST发送请求</button>
-    
+    <h1>{{ msg }}</h1>
+    <h2>Essential Links</h2>
+    <ul>
+      <li>
+        <a
+          href="https://vuejs.org"
+          target="_blank"
+        >
+          Core Docs
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://forum.vuejs.org"
+          target="_blank"
+        >
+          Forum
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://chat.vuejs.org"
+          target="_blank"
+        >
+          Community Chat
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://twitter.com/vuejs"
+          target="_blank"
+        >
+          Twitter
+        </a>
+      </li>
+      <br>
+      <li>
+        <a
+          href="http://vuejs-templates.github.io/webpack/"
+          target="_blank"
+        >
+          Docs for This Template
+        </a>
+      </li>
+    </ul>
+    <h2>Ecosystem</h2>
+    <ul>
+      <li>
+        <a
+          href="http://router.vuejs.org/"
+          target="_blank"
+        >
+          vue-router
+        </a>
+      </li>
+      <li>
+        <a
+          href="http://vuex.vuejs.org/"
+          target="_blank"
+        >
+          vuex
+        </a>
+      </li>
+      <li>
+        <a
+          href="http://vue-loader.vuejs.org/"
+          target="_blank"
+        >
+          vue-loader
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/vuejs/awesome-vue"
+          target="_blank"
+        >
+          awesome-vue
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Vue from "vue";
-
-Vue.prototype.$http = axios;
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  },
-  methods: {
-    getData() {
-      this.$http
-        .get("https://cnodejs.org/api/v1/topics")
-        .then((res)=> {
-          //此处的this指向的不是当前vue实例
-          this.items = res.data.data;
-          console.log(res.data.data);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
+      msg: 'Welcome to Your Vue.js App'
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  color: red;
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
 }
 </style>
