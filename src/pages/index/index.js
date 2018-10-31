@@ -1,12 +1,12 @@
-// import 'css/common.css'
-// import './index.css'
+import '@/modules/css/common.css'
+import './index.css'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import url from './js/api.js'
+import url from '@/modules/js/api.js'
 
 Vue.config.productionTip = false
 
@@ -27,6 +27,6 @@ Vue.config.productionTip = false
     })
   },
   router,
-  components: { App },
-  template: '<App/>'
+  // components: { App },
+  // template: '<App/>'
 })
