@@ -3,7 +3,7 @@ import './index.css'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-// import App from './App'
+import Foot from '@/components/foot'
 import router from './router'
 import axios from 'axios'
 import url from '@/modules/js/api.js'
@@ -29,7 +29,8 @@ Vue.config.productionTip = false
   },
   methods:{
     getLists(){
-      this.loading = true
+    if(this.allLoaded) return
+    this.loading = true
     axios.post(url.hotLists,{
       pageNum:this.pageNum,
       pageSize:this.pageSize,
@@ -51,6 +52,6 @@ Vue.config.productionTip = false
     }
   },
   router,
-  // components: { App },
+  components: { Foot },
   // template: '<App/>'
 })
