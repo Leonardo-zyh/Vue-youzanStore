@@ -25,14 +25,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/index.css"> -->
+  
 </head>
 
 <body class=" " style="min-height: 860px;">
   <div id="app">
   <div class="container with-bottom-nav" style="min-height: 667px;" >
     <div class="content">
-      <div class="js-image-swiper
- custom-image-swiper  custom-image-swiper-single" data-images="1">
+      <div class="js-image-swiper custom-image-swiper  custom-image-swiper-single" data-images="1">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swp-page">
@@ -75,7 +75,7 @@
       </div>
       <div class="hot-goods js-waterfull-wrap" data-src="">
         <ul class="js-list js-lazy" data-src=""
-        v-infinite-scroll="loadMore"
+        v-infinite-scroll="getLists"
         infinite-scroll-disabled="loading"
         infinite-scroll-distance="10"
         >
