@@ -1,5 +1,5 @@
 <template>
-  <div id="foot">
+  
     <div class="bottom-nav">
     <ul>
       <li class="active">
@@ -26,7 +26,7 @@
         </li>
     </ul>
   </div>
-  </div>
+  
 </template>
 
 <script>
