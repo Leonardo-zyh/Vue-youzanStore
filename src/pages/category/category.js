@@ -13,6 +13,7 @@ new Vue({
         topIndex:0,
         subData:null,
         rankData:null,
+        
     },
     created(){
         this.getTopList()
@@ -37,12 +38,24 @@ new Vue({
         },
         getRank(){
             axios.get(url.rank).then(res=>{
+                
                 this.rankData = res.data.data
+                console.log( this.rankData);
             })
         }
     
     },
     components:{
         Foot
+    },
+    filters:{
+        number(price){
+            if((price+'').includes('.')){
+                price = price + '0'
+            }else{
+                price = price + '.00'
+            }
+            return price
+        }
     }
 })

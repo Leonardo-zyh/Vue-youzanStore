@@ -67,7 +67,7 @@
       </div>
       <div class="class-category">
         <div id="scroll-main-wrap" class="main-content">
-          <div id="scroll-main-content" class="js-main-content inner-content" style="height: 943px; transform: translate3d(0px, 0px, 0px); " v-show="topIndex==0" >
+          <div id="scroll-main-content" class="js-main-content inner-content" style="height: 943px; transform: translate3d(0px, 0px, 0px); " v-if="topIndex==0&&rankData" >
             <div class="hot-wrap">
               <div class="hot-goods">
                 <div class="hot-title">
@@ -75,54 +75,23 @@
                   <a href="https://maijia.youzan.com/mars/rank/hotgoods" class="pull-right icon-right">更多</a>
                 </div>
                 <ul>
-                  <li class="goods-item">
+                  <li class="goods-item" v-for="(list,index) in rankData.hotGoods" >
                     <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&amp;source=yzapp&amp;f_platform=yzapp">
                       <div class="thumb badge center-img">
-                        <img src="https://img.yzcdn.cn/upload_files/2017/02/01/Fm3TX1YgkaJsSzZNfP8pYqV4w30_.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                        <span class="num">1</span>
+                        <img :src="list.img">
+                        <span class="num">{{index+1}}</span>
                       </div>
                       <div class="detail">
-                        <div class="title">Nature自然系列 | 混合版，花点时间热卖中，139元/4束，新用户赠花瓶。每周一束混合花束，品种随机。</div>
-                        <div class="price">￥139.00</div>
+                        <div class="title">{{list.name}}</div>
+                        <div class="price">￥{{list.price | number}}</div>
                         <div class="recommend">
                           <span>推荐值:</span>
-                          <span>45371</span>
+                          <span>{{list.recommend}}</span>
                         </div>
                       </div>
                     </a>
                   </li>
-                  <li class="goods-item">
-                    <a href="https://h5.youzan.com/v2/showcase/goods?alias=1y3yyc3dntxpb&amp;source=yzapp&amp;f_platform=yzapp">
-                      <div class="thumb badge center-img">
-                        <img src="https://img.yzcdn.cn/upload_files/2017/07/07/FrReTkX7by5UykdANunTgLO6A96I.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                        <span class="num">2</span>
-                      </div>
-                      <div class="detail">
-                        <div class="title">范冰冰同款，一款越晒越白的防晒帽！</div>
-                        <div class="price">￥138.00</div>
-                        <div class="recommend">
-                          <span>推荐值:</span>
-                          <span>1203</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="goods-item">
-                    <a href="https://h5.youzan.com/v2/showcase/goods?alias=yzlvlgx&amp;source=yzapp&amp;f_platform=yzapp">
-                      <div class="thumb badge center-img">
-                        <img src="https://img.yzcdn.cn/upload_files/2017/01/24/Fu02cf12xKmGOVLNmBvl18UWRoVj.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                        <span class="num">3</span>
-                      </div>
-                      <div class="detail">
-                        <div class="title">【周黑鸭_锁鲜】气调盒装卤鸭锁骨240g</div>
-                        <div class="price">￥23.90</div>
-                        <div class="recommend">
-                          <span>推荐值:</span>
-                          <span>1192</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
+                  
                 </ul>
               </div>
               <div class="hot-shops" style="position: relative;">
@@ -205,87 +174,26 @@
               </div>
             </div>
           </div>
-          <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);" v-show="topIndex>0" >
+          <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);" v-if="topIndex>0&&subData" >
             <h3 class="category-title">热门品牌 </h3>
             <ul class="category-content">
-              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子">
-                <img src="https://img.yzcdn.cn/o_1a2m590lg110p1mp21nr11ffmpsl9.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="良品铺子" class="category-img">
+              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子" 
+              v-for="list in subData.brandList">
+                <img :src="list.img" :alt="list.name" class="category-img">
                 <span class="category-item-name">
-                良品铺子            </span>
+                {{list.name}}            </span>
               </li>
-              <li class="category-item js-category-item" data-item-id="83" data-item-name="周黑鸭">
-                <img src="https://img.yzcdn.cn/o_1a2m59s44mo61kid1ikd5mv1cc9.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="周黑鸭" class="category-img">
-                <span class="category-item-name">
-                周黑鸭            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="82" data-item-name="来伊份">
-                <img src="https://img.yzcdn.cn/o_1a2m5abjoa441fjg1hdi6aeqf79.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="来伊份" class="category-img">
-                <span class="category-item-name">
-                来伊份            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="81" data-item-name="五谷磨房">
-                <img src="https://img.yzcdn.cn/o_1a2m5arho1icm2ncs6tdj473j9.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="五谷磨房" class="category-img">
-                <span class="category-item-name">
-                五谷磨房            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="80" data-item-name="龙润">
-                <img src="https://img.yzcdn.cn/o_1a2m5c6f91qe3f0v13t1516cuo9.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="龙润" class="category-img">
-                <span class="category-item-name">
-                龙润            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="79" data-item-name="齐峰果业">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/31/FgZ1wJ7Ag95pPFZUte2he6bzrtSk.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="齐峰果业" class="category-img">
-                <span class="category-item-name">
-                齐峰果业            </span>
-              </li>
+
             </ul>
             <h3 class="category-title"> 热门分类  </h3>
             <ul class="category-content">
-              <li class="category-item js-category-item" data-item-id="10" data-item-name="水果">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/Fk8hpTtgWFr_q7FCCGdzqXsOkYms.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="水果" class="category-img">
+              <li class="category-item js-category-item" data-item-id="10" :data-item-name="list.name"
+              v-for="list in subData.categoryList">
+                <img :src="list.img" :alt="list.name" class="category-img">
                 <span class="category-item-name">
-                水果            </span>
+                {{list.name}}            </span>
               </li>
-              <li class="category-item js-category-item" data-item-id="835" data-item-name="生鲜">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FhUo5oH7FREcNyOQVNaSgeF3IHUw.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="生鲜" class="category-img">
-                <span class="category-item-name">
-                生鲜            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="839" data-item-name="饼干蛋糕">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FqLVzz7mqblDP1pYEYruiDXZu7Dj.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="饼干蛋糕" class="category-img">
-                <span class="category-item-name">
-                饼干蛋糕            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="842" data-item-name="坚果炒货">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FvVAsr7PzPg_GB1lmGwtkjQDyMAM.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="坚果炒货" class="category-img">
-                <span class="category-item-name">
-                坚果炒货            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="9" data-item-name="休闲零食">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FoezLgMYiSvKhumdMDrfQ0xmgg_d.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="休闲零食" class="category-img">
-                <span class="category-item-name">
-                休闲零食            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="14" data-item-name="茶饮">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FhoZy7_wrnk78MoFX_iz7sXHWR_F.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="茶饮" class="category-img">
-                <span class="category-item-name">
-                茶饮            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="845" data-item-name="酒水">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FkSkqBCLt_Y3NdRqYtzGAKSQNzEY.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="酒水" class="category-img">
-                <span class="category-item-name">
-                酒水            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="13" data-item-name="粮油干货">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/FhrpDJ99PvIO5jbahU_V-a1Jcqnz.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="粮油干货" class="category-img">
-                <span class="category-item-name">
-                粮油干货            </span>
-              </li>
-              <li class="category-item js-category-item" data-item-id="16" data-item-name="营养保健品">
-                <img src="https://img.yzcdn.cn/upload_files/2015/12/28/Ft9GDVJJ39BaoliQ2fUn546haQ8C.jpg?imageView2/2/w/120/h/0/q/75/format/jpg" alt="营养保健品" class="category-img">
-                <span class="category-item-name">
-                营养保健品            </span>
-              </li>
+              
             </ul>
           </div>
         </div>
