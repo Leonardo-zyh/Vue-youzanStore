@@ -67,5 +67,5 @@ Vue.config.productionTip = false
   },
   router,
   components: { Foot,Swipe },
-  // template: '<App/>'
+
 })

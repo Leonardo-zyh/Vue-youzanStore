@@ -4,7 +4,7 @@
     <ul>
       <li :class="{active:index==curIndex}" v-for="(list,index) in navConfig" :key="index"
       @click="changeNav(list,index)">
-          <a :href="list.href">
+          <a  >
           <i :class="list.icon"></i>
           <div>{{list.name}}</div>
           </a>
@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import qs from "qs";
+let { index } = qs.parse(location.search.substr(1));
+
 let navConfig = [
   {
     name: "有赞",
@@ -26,12 +29,12 @@ let navConfig = [
     icon: "icon-category",
     href: "category.html"
   },
-    {
+  {
     name: "购物车",
     icon: "icon-cart",
     href: "cart.html"
   },
-    {
+  {
     name: "我",
     icon: "icon-user",
     href: "member.html"
@@ -39,16 +42,18 @@ let navConfig = [
 ];
 export default {
   name: "Foot",
-  data(){
-    return{
+  data() {
+    return {
       navConfig,
-      curIndex:0
-    }
+      curIndex: parseInt(index) || 0
+    };
   },
-  methods:{
-    changeNav(list,index){
-      //this.curIndex=index
-      Location.href = `{list,href}?index=${index}`
+  methods: {
+    changeNav(list, index) {
+      //this.curIndex = index;
+      location.href = `${list.href}?index=${index}`;
+      console.log(location.href);
+      event.preventDefault();
     }
   }
 };
@@ -61,10 +66,11 @@ export default {
   height: 50px;
   bottom: 0;
   background-color: #fff;
-  z-index: 8;
+  z-index: 999;
   -o-border-image: url(https://b.yzcdn.cn/v2/image/wap/border-line-2.png) 2
     stretch;
   border-image: url(https://b.yzcdn.cn/v2/image/wap/border-line-2.png) 2 stretch;
   border-top: 2px solid #e5e5e5;
 }
+
 </style>

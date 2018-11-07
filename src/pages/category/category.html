@@ -177,8 +177,9 @@
           <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);" v-if="topIndex>0&&subData" >
             <h3 class="category-title">热门品牌 </h3>
             <ul class="category-content">
-              <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子" 
-              v-for="list in subData.brandList">
+              <li class="category-item js-category-item" data-item-id="85" data-item-name="list.name" 
+              v-for="list in subData.brandList"
+             >
                 <img :src="list.img" :alt="list.name" class="category-img">
                 <span class="category-item-name">
                 {{list.name}}            </span>
@@ -188,7 +189,8 @@
             <h3 class="category-title"> 热门分类  </h3>
             <ul class="category-content">
               <li class="category-item js-category-item" data-item-id="10" :data-item-name="list.name"
-              v-for="list in subData.categoryList">
+              v-for="list in subData.categoryList"
+              @click="toSearch(list)">
                 <img :src="list.img" :alt="list.name" class="category-img">
                 <span class="category-item-name">
                 {{list.name}}            </span>
@@ -200,32 +202,7 @@
       </div>
     </div>
   </div>
-  <div class="bottom-nav">
-    <ul>
-      <li>
-          <a href="index.html">
-          <i class="icon-home"></i>
-          <div>有赞</div>
-          </a>
-        </li>
-      <li class="active">
-          <a href="category.html">
-          <i class="icon-category"></i>
-          <div>分类</div>
-          </a>
-        </li>
-      <li>
-          <a href="cart.html">
-          <i class="icon-cart"></i><div>购物车</div></a>
-        </li>
-      <li>
-          <a href="member.html">
-          <i class="icon-user"></i>
-          <div>我</div>
-          </a>
-        </li>
-    </ul>
-  </div>
+  <Foot></Foot>
 </div>
 </body>
 

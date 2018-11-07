@@ -6,6 +6,7 @@ import axios from 'axios'
 import Foot from '@/components/Foot.vue'
 import url from '@/modules/js/api.js'
 
+
 new Vue({
     el:'#app',
     data:{
@@ -42,6 +43,9 @@ new Vue({
                 this.rankData = res.data.data
                 console.log( this.rankData);
             })
+        },
+        toSearch(list){
+            location.href = `search.html?keyword=${list.name}&id=${list.id}`
         }
     
     },

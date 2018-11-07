@@ -31,3 +31,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 # dns-prefetch
+
+
+# FastClick解决点击击穿
+阻止事件冒泡    event.preventDefault();

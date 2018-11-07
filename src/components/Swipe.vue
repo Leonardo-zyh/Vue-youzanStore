@@ -16,8 +16,8 @@
 
 <script>
 // swiper是对dom节点操作
-import Swiper from '_swiper@4.4.1@swiper/dist/js/swiper.js'
-import '_swiper@4.4.1@swiper/dist/css/swiper.css'
+import Swiper from '_swiper@4.4.2@swiper/dist/js/swiper.js'
+import '_swiper@4.4.2@swiper/dist/css/swiper.css'
 export default {
   name: "swipe",
   // props:['lists']

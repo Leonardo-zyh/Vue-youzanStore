@@ -126,7 +126,7 @@
     font-size: 14px
   }
   
-  .bottom-nav {
+  /* .bottom-nav {
     position: fixed;
     width: 100%;
     height: 50px;
@@ -136,7 +136,7 @@
     -o-border-image: url("https://b.yzcdn.cn/v2/image/wap/border-line-2.png") 2 stretch;
     border-image: url("https://b.yzcdn.cn/v2/image/wap/border-line-2.png") 2 stretch;
     border-top: 2px solid #e5e5e5
-  }
+  } */
   
   @media only screen and (-webkit-min-device-pixel-ratio:1.5),
   only screen and (min--moz-device-pixel-ratio:1.5),
