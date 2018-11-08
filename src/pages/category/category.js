@@ -3,8 +3,9 @@ import './category.css'
 
 import Vue from 'vue'
 import axios from 'axios'
-import Foot from '@/components/Foot.vue'
+// import Foot from '@/components/Foot.vue'
 import url from '@/modules/js/api.js'
+import mixin from '@/modules/js/mixin.js'
 
 
 new Vue({
@@ -49,17 +50,19 @@ new Vue({
         }
     
     },
-    components:{
-        Foot
-    },
-    filters:{
-        number(price){
-            if((price+'').includes('.')){
-                price = price + '0'
-            }else{
-                price = price + '.00'
-            }
-            return price
-        }
-    }
+    mixins:[mixin]
+    // components:{
+    //     Foot
+    // },
+    // filters:{
+    //     number(price){
+    //         let priceStr = ''+ price
+    //         if(priceStr.indexOf('.') >-1){
+    //             let arr = priceStr.split('.')
+    //             return arr[0]+ '.' + (arr[1] + '0').substr(0,2)
+    //         }else{
+    //             return priceStr + '.00'
+    //         }
+    //     }
+    // }
 })

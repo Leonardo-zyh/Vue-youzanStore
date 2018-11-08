@@ -35,3 +35,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 # FastClick解决点击击穿
 阻止事件冒泡    event.preventDefault();
+
+对于没有doctype声明的页面里可以使用 document.body.scrollTop 来获取 scrollTop高度 ； 
+对于有doctype声明的页面则可以使用 document.documentElement.scrollTop； 
+
+带有V1演示的Velocity V2 beta - 它们在滚动方面完全不兼容。在V2中，它现在是滚动的元素的属性（即容器）。

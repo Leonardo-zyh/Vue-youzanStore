@@ -25,7 +25,7 @@
 
 <body class=" " >
   <div id="app">
-  <div class="container with-bottom-nav" style="min-height: 667px; height: 667px;">
+  <div class="container with-bottom-nav" style="min-height: 667px; height: 667px;" >
     <div class="custom-search js-search-bar">
       <form>
         <input type="search" class="custom-search-input" autocomplete="off" name="keyword" value="" placeholder="搜索更赞的商品">
@@ -83,7 +83,7 @@
                       </div>
                       <div class="detail">
                         <div class="title">{{list.name}}</div>
-                        <div class="price">￥{{list.price | number}}</div>
+                        <div class="price">￥{{list.price | currency}}</div>
                         <div class="recommend">
                           <span>推荐值:</span>
                           <span>{{list.recommend}}</span>
