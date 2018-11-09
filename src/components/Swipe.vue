@@ -9,15 +9,15 @@
                 </a>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination swiper-pagination-bullets"></div>
             </div>
  
 </template>
 
 <script>
 // swiper是对dom节点操作
-import Swiper from '_swiper@4.4.2@swiper/dist/js/swiper.js'
-import '_swiper@4.4.2@swiper/dist/css/swiper.css'
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.css'
 export default {
   name: "swipe",
   // props:['lists']
@@ -26,6 +26,7 @@ export default {
       // type:Array,
       required:true
     },
+    lists:{},
     name:{}
   },
   created(){
@@ -34,8 +35,18 @@ export default {
   mounted(){
     new Swiper('.swiper-container',{
       loop:true,
-      pagination:'.swiper-pagination'
+      pagination: '.swiper-pagination',
+      autoplay: 2000
     })
+  },
+  methods: {
+    init() {
+      new Swiper('.swiper-container',{
+        loop: true,
+        pagination: '.swiper-pagination',
+        autoplay: 2000
+     })
+    }
   },
   // watch:{
   //   lists(val,oldVal){
@@ -54,6 +65,10 @@ export default {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   z-index: 1;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
 }
 
 

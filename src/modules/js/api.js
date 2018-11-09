@@ -4,7 +4,14 @@ let url =  {
     topList:'/category/topList',
     subList:'/category/subList',
     rank:'/category/rank',
-    searchList:'/search/list'
+    searchList:'/search/list',
+    details:'/goods/details',
+    deal:'/goods/deal',
+    cartAdd:'/cart/add',
+    cartLists:'/cart/list',
+    cartReduce:'/cart/reduce',
+    cartRemove:'/cart/remove',
+    cartMremove:'/cart/mremove'
 }
 //开发环境和真是环境
 
