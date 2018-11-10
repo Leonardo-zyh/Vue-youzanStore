@@ -620,7 +620,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .block-list-cart .block-item-cart .name-card .detail {
-  margin-left: 98px
+  margin-left: 98px;
+  display: inline-block;
+  margin: 0;
+  padding-left: 8px;
+  padding-bottom: 8px;
 }
 
 .block-list-cart .block-item-cart .name-card .detail .sku {

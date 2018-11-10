@@ -160,16 +160,17 @@
                 <div class="hot-title">
                   <p class="pull-left">热搜词排行</p>
                 </div>
-                <ul class="keywords-list">
-                  <li><a href="javascript:;" class="js-hot-keyword">化妆水</a></li>
-                  <li><a href="javascript:;" class="js-hot-keyword">凉鞋女</a></li>
+                <ul class="keywords-list" v-if="topIndex>0&&subData">
+                  <li :data-item-name="list.name" v-for="list in subData.categoryList"
+                  @click="toSearch(list)"><a href="javascript:;" class="js-hot-keyword">{{list.name}}</a></li>
+                  <!-- <li><a href="javascript:;" class="js-hot-keyword">凉鞋女</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">连衣裙</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">面膜</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">防晒</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">蓝牙音箱</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">小白鞋</a></li>
                   <li><a href="javascript:;" class="js-hot-keyword">裤子</a></li>
-                  <li><a href="javascript:;" class="js-hot-keyword">衬衫</a></li>
+                  <li><a href="javascript:;" class="js-hot-keyword">衬衫</a></li> -->
                 </ul>
               </div>
             </div>
@@ -179,6 +180,7 @@
             <ul class="category-content">
               <li class="category-item js-category-item" data-item-id="85" data-item-name="list.name" 
               v-for="list in subData.brandList"
+              @click="toSearch(list)"
              >
                 <img :src="list.img" :alt="list.name" class="category-img">
                 <span class="category-item-name">
