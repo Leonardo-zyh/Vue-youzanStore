@@ -25,33 +25,31 @@
           <!---->
           <!--店铺渲染-->
           <div class="js-shop-list shop-list">
-            <div class="block block-order block-cart" v-for="(shop,index) in lists">
+            <div class="block block-order block-cart" v-for="(shop,shopIndex) in lists">
               <div class="header">
                 <div class="select-group js-select-group" @click="selectShop(shop)">
-                  <span class="check " :class="{checked:shop.checked}"></span>
+                  <span class="check " :class="{checked:shop.checked}" v-show="!editingShop"></span>
+                  <span class="check " :class="{checked:shop.removeChecked}" v-show="editingShop"></span>
                 </div>
                 <a class="shop-title"><i class="custom-store-img">店铺：</i>{{shop.shopTitle}}</a>
-                <a href="javascript:;" data-type="cart" 
-                class="j-edit-list pull-right c-blue font-size-12 edit-list"                
-                @click='edit(shop,index)'
-                >
-                  {{shop.editingMsg}}                  
+                <a href="javascript:;" data-type="cart" class="j-edit-list pull-right c-blue font-size-12 edit-list"
+                  @click='edit(shop,shopIndex)'>
+                  {{shop.editingMsg}}
                 </a>
               </div>
               <div>
                 <ul class="js-list block block-list block-list-cart border-0">
-                  <li class="block-item block-item-cart "
-                  :class="{editing:shop.editing}"                   
-                  v-for="(good,godoIndex) in shop.goodsList">
+                  <li class="block-item block-item-cart " :class="{editing:shop.editing}" v-for="(good,goodIndex) in shop.goodsList">
                     <div>
                       <div class="check-container" @click="selectGood(shop,good)">
-                        <span class="check" :class="{checked:good.checked}"></span>
+                        <span class="check" :class="{checked:editingShop?good.removeChecked:good.checked}"></span>
+
                       </div>
                       <div class="name-card clearfix">
                         <!-- <a :href="'goodsList.html?id='+good.id" class="thumb js-goods-link"> -->
-                          <img data-src="https://img.yzcdn.cn/upload_files/2017/07/04/Fqp4EItsHaclmGQPBoMkR1qKmKGi.jpg!200x200.jpg"
-                            class="js-lazy" :src="good.img">
-                          <!---->
+                        <img data-src="https://img.yzcdn.cn/upload_files/2017/07/04/Fqp4EItsHaclmGQPBoMkR1qKmKGi.jpg!200x200.jpg"
+                          class="js-lazy" :src="good.img">
+                        <!---->
                         </a>
                         <div class="detail">
                           <a href="https://h5.youzan.com/v2/showcase/goods?alias=2oivacpjh2ex0" class="js-goods-link">
@@ -69,19 +67,19 @@
                           <div class="num" v-else="!shop.editing">
                             <!---->
                             <div class="quantity">
-                              <button type="button" class="minus disabled"></button>
+                              <button type="button" class="minus" :class="{disabled:good.number==1}"></button>
                               <input type="text" pattern="[0-9]*" class="txt" v-model='good.number'>
                               <button type="button" class="plus "></button>
-                              <div class="response-area response-area-minus"></div>
-                              <div class="response-area response-area-plus"></div>
+                              <div class="response-area response-area-minus" @click="reduce(good)"></div>
+                              <div class="response-area response-area-plus" @click="add(good)"></div>
                             </div>
                           </div>
                           <div class="price c-orange">
-                            ¥<span>{{good.price  | currency}}</span></div>
+                            ¥<span>{{good.price | currency}}</span></div>
                         </div>
                         <div class="error-box"></div>
                       </div>
-                      <div class="delete-btn" ><span>删除</span></div>
+                      <div class="delete-btn" @click="remove(shop,shopIndex,good,goodIndex)"><span>删除</span></div>
                     </div>
                   </li>
 
@@ -120,7 +118,7 @@
                       </div>
                       <div class="error-box">商品已售罄</div>
                     </div>
-                    <div class="delete-btn"><span>删除</span></div>
+                    <div class="delete-btn" ><span>删除</span></div>
                   </div>
                 </li>
               </ul>
@@ -135,36 +133,50 @@
             </div>
             <div class="bottom-cart clear-fix">
               <div class="select-all" @click="selectAll">
-                <span class="check " :class="{checked:allSelected}"></span> 全选
+                <span class="check " :class="{checked:editingShop?allRemoveSelected:allSelected}"></span> 
+                全选
               </div>
 
               <!-- 显示状态 -->
-              <div class="total-price" >
+              <div class="total-price">
                 合计：¥<span class="js-total-price" style="color: rgb(255, 102, 0);">{{selectLists.total | currency}}</span>
                 <p class="c-gray-dark">不含运费</p>
               </div>
-              <button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14" 
-              :disabled="arr.length==0"
-              v-show='!editingShop'>
+              <button href="javascript:;" class="js-go-pay btn btn-orange-dark font-size-14" :disabled="arr.length==0"
+                v-show='!editingShop'>
                 结算 ({{arr.length}})
               </button>
               <!-- 编辑状态 -->
-              <button href="javascript:;"  disabled="disabled"
-              class="j-delete-goods btn font-size-14 btn-red"
-             v-show='editingShop'>删除
+              <button href="javascript:;" :disabled="!removeLists.length"
+               class="j-delete-goods btn font-size-14 btn-red" v-show='editingShop'>删除
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- 弹窗 -->
+    <div id="5Ayuh2y9u5" v-show="removePopup" style="height: 100%; position: fixed; top: 0px; left: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; transition: none 0.2s ease; opacity: 1;"></div>
+    <div id="Ht7zuJ4s7C" v-show="removePopup" class="popout-confirm popout-box" style="overflow: hidden; position: absolute; z-index: 1000; transition: opacity 300ms ease; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); visibility: visible; border-radius: 4px; background: white; width: 270px; padding: 15px; opacity: 1;">
+      <div class="confirm-content font-size-14" style="line-height: 20px; padding: 5px 5px 10px;">
+        removeMsg
+      </div>
+      <hr style="margin: 9px -15px 10px;">
+      <div class="btn-2-1">
+        <p class="js-cancel center font-size-16" style="padding-top: 5px;" >取消</p>
+      </div>
+      <div class="btn-2-1">
+        <p class="js-ok center c-green font-size-16" style="padding-top: 5px;;" @click="removeConfirm" >确定</p>
+      </div>
+    </div>
   </div>
-  <div class="footer" style="min-height: 86px;">
+  </div>
+  <!-- <div class="footer" style="min-height: 86px;">
     <div class="copyright">
       <div class="ft-copyright " style="background-image: url(https://img.yzcdn.cn/upload_files/2016/11/15/147918630760182374.png);">
         <a class="yz-logo" href="https://www.youzan.com/?from_source=support_logo">有赞提供技术支持</a> </div>
     </div>
-  </div>
+  </div> -->
 </body>
 
 </html>
