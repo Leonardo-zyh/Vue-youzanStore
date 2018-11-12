@@ -39,7 +39,13 @@
               </div>
               <div>
                 <ul class="js-list block block-list block-list-cart border-0">
-                  <li class="block-item block-item-cart " :class="{editing:shop.editing}" v-for="(good,goodIndex) in shop.goodsList">
+                  <li class="block-item block-item-cart " 
+                  :class="{editing:shop.editing}" 
+                  :ref="'goods-'+shopIndex+'-'+goodIndex"
+                    v-for="(good,goodIndex) in shop.goodsList"
+                    @touchstart="start($event,good)"
+                    @touchend="end($event,shopIndex,good,goodIndex)"
+                  >
                     <div>
                       <div class="check-container" @click="selectGood(shop,good)">
                         <span class="check" :class="{checked:editingShop?good.removeChecked:good.checked}"></span>
@@ -148,7 +154,7 @@
               </button>
               <!-- 编辑状态 -->
               <button href="javascript:;" :disabled="!removeLists.length"
-               class="j-delete-goods btn font-size-14 btn-red" v-show='editingShop'>删除
+               class="j-delete-goods btn font-size-14 btn-red" v-show='editingShop' @click="removeList">删除
               </button>
             </div>
           </div>
@@ -158,12 +164,12 @@
     <!-- 弹窗 -->
     <div id="5Ayuh2y9u5" v-show="removePopup" style="height: 100%; position: fixed; top: 0px; left: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; transition: none 0.2s ease; opacity: 1;"></div>
     <div id="Ht7zuJ4s7C" v-show="removePopup" class="popout-confirm popout-box" style="overflow: hidden; position: absolute; z-index: 1000; transition: opacity 300ms ease; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); visibility: visible; border-radius: 4px; background: white; width: 270px; padding: 15px; opacity: 1;">
-      <div class="confirm-content font-size-14" style="line-height: 20px; padding: 5px 5px 10px;">
-        removeMsg
+      <div class="confirm-content font-size-14" style="line-height: 20px; padding: 10px 10px 10px;">
+        {{removeMsg}}
       </div>
       <hr style="margin: 9px -15px 10px;">
       <div class="btn-2-1">
-        <p class="js-cancel center font-size-16" style="padding-top: 5px;" >取消</p>
+        <p class="js-cancel center font-size-16" style="padding-top: 5px;" @click="cancel">取消</p>
       </div>
       <div class="btn-2-1">
         <p class="js-ok center c-green font-size-16" style="padding-top: 5px;;" @click="removeConfirm" >确定</p>
