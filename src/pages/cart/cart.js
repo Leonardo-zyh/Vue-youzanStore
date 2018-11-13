@@ -17,7 +17,7 @@ import url from '@/modules/js/api.js'
 import mixin from '@/modules/js/mixin.js'
 import Volecity from '_velocity-animate@1.5.2@velocity-animate/velocity.js'
 import Cart from '../../modules/js/cartService';
-import fetch from '../../modules/js/fetch.js'
+import fetch from '../../modules/js/fetch'
 
 new Vue({
     el: '.container',
@@ -187,7 +187,7 @@ new Vue({
         removeConfirm() {
             if (this.removeMsg === '确认要删除该商品吗？') {
                 let { shop, shopIndex, good, goodIndex } = this.removeData
-                axios.get(url.cartRemove,{
+                fetch(url.cartRemove,{
                     id:good.id
                 }).then(res => {                    
                     shop.goodsList.splice(goodIndex, 1)
@@ -196,9 +196,10 @@ new Vue({
                         this.lists.splice(shopIndex, 1)
                         this.removeShop()
                     }
-
+                    this.removePopup = false 
+                    this.$refs[`goods-${shopIndex}-${goodIndex}`][0].style.left='0px'
                 })
-                // this.$refs[`goods-${shopIndex}-${goodIndex}`][0].style.left = '0px'
+
             } else {
                 let ids =[]
                 this.removeLists.forEach(good=>{

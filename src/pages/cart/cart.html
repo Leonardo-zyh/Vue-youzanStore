@@ -43,6 +43,7 @@
                   :class="{editing:shop.editing}" 
                   :ref="'goods-'+shopIndex+'-'+goodIndex"
                     v-for="(good,goodIndex) in shop.goodsList"
+                    :key="good.id"
                     @touchstart="start($event,good)"
                     @touchend="end($event,shopIndex,good,goodIndex)"
                   >
@@ -74,7 +75,7 @@
                             <!---->
                             <div class="quantity">
                               <button type="button" class="minus" :class="{disabled:good.number==1}"></button>
-                              <input type="text" pattern="[0-9]*" class="txt" v-model='good.number'>
+                              <input type="text" pattern="[0-9]*" onkeyup="(this.v=function(){this.value=this.value.replace(/[^1-9-]+/,'');}).call(this)" onblur="this.v();" class="txt" v-model='good.number'>
                               <button type="button" class="plus "></button>
                               <div class="response-area response-area-minus" @click="reduce(good)"></div>
                               <div class="response-area response-area-plus" @click="add(good)"></div>
@@ -163,7 +164,8 @@
     </div>
     <!-- 弹窗 -->
     <div id="5Ayuh2y9u5" v-show="removePopup" style="height: 100%; position: fixed; top: 0px; left: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; transition: none 0.2s ease; opacity: 1;"></div>
-    <div id="Ht7zuJ4s7C" v-show="removePopup" class="popout-confirm popout-box" style="overflow: hidden; position: absolute; z-index: 1000; transition: opacity 300ms ease; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); visibility: visible; border-radius: 4px; background: white; width: 270px; padding: 15px; opacity: 1;">
+    <div id="Ht7zuJ4s7C" v-show="removePopup" class="popout-confirm popout-box" 
+    style="overflow: hidden; position: fixed; z-index: 1000; transition: opacity 300ms ease; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); visibility: visible; border-radius: 4px; background: white; width: 270px; padding: 15px; opacity: 1;">
       <div class="confirm-content font-size-14" style="line-height: 20px; padding: 10px 10px 10px;">
         {{removeMsg}}
       </div>

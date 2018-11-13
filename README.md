@@ -40,3 +40,18 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 对于有doctype声明的页面则可以使用 document.documentElement.scrollTop； 
 
 带有V1演示的Velocity V2 beta - 它们在滚动方面完全不兼容。在V2中，它现在是滚动的元素的属性（即容器）。
+
+
+#购物车
+* 商品的获取渲染以及增加是否被选中属性
+* 获取后台数据加载处理或动态响应式处理
+* 商品选中店铺选中全选，影响价格三级联动。
+* 编辑状态，其余不可切换。对数量操作，加减更改。删除，单商品删除，选中(多个)删除，商品删除店铺删除。
+* 原生事件，滑动删除页面，Volecity。
+* 删除多个商品进行过滤处理
+
+* fetch层封装，
+* 同一个场景下思维层封装
+
+* 问题呈现，左滑删除样式继承。 [0].style.left='0px'
+* 
