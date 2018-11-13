@@ -21,7 +21,16 @@ export default {
     created() {
         let query = this.$route.query
         this.type = query.type
-        this.instance = query.instance                
+        this.instance = query.instance 
+        
+        if(this.type==='edit'){
+            let ad = this.instance
+            this.provinceValue = parseInt(this.instance.provinceValue)
+            this.name = ad.name
+            this.tel = ad.tel
+            this.address = ad.address
+            this.id = ad.id
+        }
     },
     methods:{
         add(){
@@ -33,6 +42,24 @@ export default {
                     this.$router.go(-1)
                 })
             }
+            if(this.type==='add'){
+                data.id = this.id
+                Address.add(data).then(res=>{
+                    this.$router.go(-1)
+                })
+            }
+        },
+        remove(){
+            if(window.confirm('确认删除？')){
+                Address.remove(this.id).then(res=>{
+                    this.$router.go(-1)
+                })
+            }
+        },
+        setDefault(){
+            Address.setDefault(this.id).then(res=>{
+                this.$router.go(-1)
+            })
         }
     },
     watch:{
@@ -44,7 +71,11 @@ export default {
             })
             this.cityList = list[index].children
             this.cityValue = -1
-            this.districtValue = -1s
+            this.districtValue = -1
+
+            if(this.type==='edit'){
+                this.cityValue = parseInt(this.instance.cityValue)
+            }
         },
         cityValue(val){
             if(val=== -1) return
@@ -54,6 +85,9 @@ export default {
             })
             this.districtList = list[index].children
             this.districtValue = -1
+            if(this.type==='edit'){
+                this.districtValue = parseInt(this.instance.districtValue)
+            }
         }
     }
 }

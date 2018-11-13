@@ -4,7 +4,7 @@ import member from './components/member.vue'
 import address from './components/address.vue'
 import all from './components/all.vue'
 import form from './components/form.vue'
-
+import './member.css'
 // vue-router
 import Vue from 'vue'
 import Router from 'vue-router'

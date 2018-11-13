@@ -55,3 +55,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 * 问题呈现，左滑删除样式继承。 [0].style.left='0px'
 * 
+
+#路由配置
+根路由，子路由配置
+动态路由匹配，参数传递。
