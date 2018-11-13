@@ -22,9 +22,11 @@ let routes = [{
         redirect:'all'
     },{
         path:'all',
+        name:'all',
         component: all,
     },{
         path:'form',
+        name:'form',
         component: form,
     }]
 }]
