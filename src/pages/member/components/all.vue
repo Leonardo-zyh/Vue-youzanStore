@@ -31,7 +31,7 @@ export default {
   // },
   computed:{
     lists(){
-      return this.$store.state,lists
+      return this.$store.state.lists
     }
   },
   created(){
