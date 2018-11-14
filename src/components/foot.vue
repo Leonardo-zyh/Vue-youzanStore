@@ -16,6 +16,8 @@
 
 <script>
 import qs from "qs";
+import bus from '@/modules/js/bus'
+import { setTimeout } from 'timers';
 let { index } = qs.parse(location.search.substr(1));
 
 let navConfig = [
@@ -41,12 +43,22 @@ let navConfig = [
   }
 ];
 export default {
+  props:['obj'],
   name: "Foot",
   data() {
     return {
       navConfig,
-      curIndex: parseInt(index) || 0
+      curIndex: parseInt(qs.parse(location.search.substr(1)).index) || 0,
+      ob:JSON.parse(JSON.stringify(this.obj))
     };
+  },
+  created(){
+    setTimeout(()=>{
+      this.ob.age = 18
+      // this.$emit('change',18)
+      bus.$emit('change',18)
+    },5000)
+    
   },
   methods: {
     changeNav(list, index) {
