@@ -39,7 +39,10 @@ export default {
     //   this.lists = res.data.lists
     //    console.log(res);      
     // })
-    this.$store.dispatch('getLists')
+    if(!this.lists){
+      this.$store.dispatch('getLists')
+    }
+    
   },
   methods: {
     toEdit(list) {
