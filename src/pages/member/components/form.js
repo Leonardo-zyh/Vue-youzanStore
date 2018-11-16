@@ -1,6 +1,6 @@
 import address from '@/modules/js/address.json'
 import Address from '@/modules/js/addressService.js'
-
+import {mapState} from 'vuex'
 export default {
     data() {
         return {
@@ -23,6 +23,7 @@ export default {
             return this.$store.state.lists
         }
     },
+    // computed:mapState['lists'],
     created() {
         let query = this.$route.query
         this.type = query.type

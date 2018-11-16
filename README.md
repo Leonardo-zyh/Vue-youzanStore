@@ -59,3 +59,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 #路由配置
 根路由，子路由配置
 动态路由匹配，参数传递。
+
+
+#状态管理
+vuex 插件引用,创建Store实例
+* state唯一数据源 (SSOT)”而存在。这也意味着，每个应用将仅仅包含一个 store 实例
+* mutation，改变状态的唯一方法是提交 。Vuex 中的 mutation 非常类似于事件
+* Action 类似于 mutation，不同在于：
+    Action 提交的是 mutation，而不是直接变更状态。
+    Action 可以包含任意异步操作。
+* Vuex 允许我们将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、
+    甚至是嵌套子模块——从上至下进行同样方式的分割

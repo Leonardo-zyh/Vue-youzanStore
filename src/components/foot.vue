@@ -49,7 +49,8 @@ export default {
     return {
       navConfig,
       curIndex: parseInt(qs.parse(location.search.substr(1)).index) || 0,
-      ob:JSON.parse(JSON.stringify(this.obj))
+      // ob:JSON.parse(JSON.stringify(this.obj))
+      ob:(this.obj)
     };
   },
   created(){
