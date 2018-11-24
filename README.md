@@ -70,3 +70,15 @@ vuex 插件引用,创建Store实例
     Action 可以包含任意异步操作。
 * Vuex 允许我们将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、
     甚至是嵌套子模块——从上至下进行同样方式的分割
+
+
+#Vue去掉 You are running Vue in development mode
+在main.js里面写
+
+Vue.config.productionTip = false;
+productionTip
+2.2.0 新增
+类型： boolean
+默认值： true
+用法：
+设置为 false 以阻止 vue 在启动时生成生产提示。
