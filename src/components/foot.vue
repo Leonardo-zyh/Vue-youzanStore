@@ -3,7 +3,7 @@
     <div class="bottom-nav">
     <ul>
       <li :class="{active:index==curIndex}" v-for="(list,index) in navConfig" :key="index"
-      @click="changeNav(list,index)">
+      v-on:click="changeNav(list,index)">
           <a  >
           <i :class="list.icon"></i>
           <div>{{list.name}}</div>
@@ -55,7 +55,7 @@ export default {
   },
   created(){
     setTimeout(()=>{
-      this.ob.age = 18
+      this.ob = 18
       // this.$emit('change',18)
       bus.$emit('change',18)
     },5000)
@@ -67,6 +67,7 @@ export default {
       location.href = `${list.href}?index=${index}`;
       console.log(location.href);
       event.preventDefault();
+      
     }
   }
 };

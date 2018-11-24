@@ -6,7 +6,7 @@ import axios from 'axios'
 // import Foot from '@/components/Foot.vue'
 import url from '@/modules/js/api.js'
 import mixin from '@/modules/js/mixin.js'
-
+Vue.config.productionTip = false;
 
 new Vue({
     el:'#app',
