@@ -25,7 +25,7 @@ new Vue({
         getTopList(){
             axios.get(url.topList).then(res=>{
                 this.topLists = res.data.lists
-                console.log(res);                
+                // console.log(res);                
             })
         },
         getSublist(id,index){
@@ -39,10 +39,8 @@ new Vue({
             }
         },
         getRank(){
-            axios.get(url.rank).then(res=>{
-                
+            axios.get(url.rank).then(res=>{                
                 this.rankData = res.data.data
-                console.log( this.rankData);
             })
         },
         toSearch(list){
@@ -51,18 +49,5 @@ new Vue({
     
     },
     mixins:[mixin]
-    // components:{
-    //     Foot
-    // },
-    // filters:{
-    //     number(price){
-    //         let priceStr = ''+ price
-    //         if(priceStr.indexOf('.') >-1){
-    //             let arr = priceStr.split('.')
-    //             return arr[0]+ '.' + (arr[1] + '0').substr(0,2)
-    //         }else{
-    //             return priceStr + '.00'
-    //         }
-    //     }
-    // }
+    
 })

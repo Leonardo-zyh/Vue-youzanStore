@@ -1,6 +1,7 @@
 import fetch from './fetch.js'
 import url from './api.js'
 
+//异步请求封装
 class Cart{
     static add(id){
         return fetch(url.cartAdd,{

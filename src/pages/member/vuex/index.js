@@ -16,7 +16,7 @@ const store = new Vuex.Store({
         },
         add(state,instance){
             state.lists.push(instance)
-            console.log(state.lists);
+            // console.log(state.lists);
             
         },
         remove(state,id){

@@ -64,8 +64,7 @@ export default {
   methods: {
     changeNav(list, index) {
       //this.curIndex = index;
-      location.href = `${list.href}?index=${index}`;
-      console.log(location.href);
+      location.href = `${list.href}?index=${index}`;  
       event.preventDefault();
       
     }

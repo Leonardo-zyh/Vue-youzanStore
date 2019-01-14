@@ -27,33 +27,22 @@ new Vue({
         getSearchList(){
             axios.get(url.searchList,{keyword,id}).then(res=>{
                 this.searchList = res.data.lists
-                console.log(res);
+                // console.log(res);
                 
             })
         },
-        move(){
+        move(){//滚动展现
             if(document.documentElement.scrollTop > 100){
                 this.isShow = true
             }else{
                 this.isShow = false
-            }
-            // console.log(document.documentElement.scrollTop);
+            }         
         },
         toTop(){
             Velocity(document.documentElement,'scroll',{duration:500})
+            this.isShow=false //回到顶部图标消失
         }
 
     },
     mixins:[mixin]
-    // filters:{
-    //     number(price){
-    //         let priceStr = ''+ price
-    //         if(priceStr.indexOf('.') >-1){
-    //             let arr = priceStr.split('.')
-    //             return arr[0]+ '.' + (arr[1] + '0').substr(0,2)
-    //         }else{
-    //             return priceStr + '.00'
-    //         }
-    //     }
-    // }
 })

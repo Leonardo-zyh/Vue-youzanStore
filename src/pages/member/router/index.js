@@ -15,10 +15,11 @@ let routes = [{
 },{
     path:'/address',
     component: address,
+    //子路由配置
     children:[{
         path:'',
-        // component: all,
-        redirect:'all'
+        //component:require('./components/all.vue')
+        redirect:'all'  //重定向
     },{
         path:'all',
         name:'all',

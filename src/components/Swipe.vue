@@ -30,14 +30,10 @@ export default {
     name:{}
   },
   created(){
-    console.log(this.lists);
+    
   },
   mounted(){
-    new Swiper('.swiper-container',{
-      loop:true,
-      pagination: '.swiper-pagination',
-      autoplay: 2000
-    })
+    init() 
   },
   methods: {
     init() {

@@ -32,6 +32,7 @@ new Vue({
         removeMsg:'',
     },
     computed: {
+//商品选择
         allSelected: {
             get() {
                 if (this.lists && this.lists.length) {
@@ -66,6 +67,7 @@ new Vue({
                 }
             }
         },
+//价格计算
         selectLists() {
             if (this.lists && this.lists.length) {
                 let arr = []
@@ -84,6 +86,7 @@ new Vue({
             }
             return []
         },
+
         removeLists() {
             if (this.editingShop) {
                 let arr = []
@@ -102,6 +105,7 @@ new Vue({
         this.getList()
     },
     methods: {
+//获取选择        
         getList() {
             axios.get(url.cartLists).then(res => {
                 let lists = res.data.cartList
@@ -136,6 +140,8 @@ new Vue({
             let attr = this.editingShop ? 'allRemoveSelected' : 'allSelected'
             this[attr] = !this[attr]
         },
+
+//编辑状态
         edit(shop, shopIndex) {
             shop.editing = !shop.editing
             shop.editingMsg = shop.editing ? '完成' : '编辑'
@@ -180,6 +186,8 @@ new Vue({
         cancel(){
             this.removePopup = false  
         },
+
+//删除事件
         removeList() {
             this.removePopup = true
             this.removeMsg = `确定将所选${this.removeLists.length}个商品删除`
@@ -194,7 +202,7 @@ new Vue({
                     this.removePopup = false
                     if (!shop.goodsList.length) {
                         this.lists.splice(shopIndex, 1)
-                        this.removeShop()
+                        this.removeShop()//删店铺
                     }
                     this.removePopup = false 
                     this.$refs[`goods-${shopIndex}-${goodIndex}`][0].style.left='0px'
@@ -237,6 +245,8 @@ new Vue({
                 shop.editingMsg = '编辑'
             })
         },
+
+//滑动删除页面，Volecity。
         start(e,good){
             good.startX = e.changedTouches[0].clientX
         },

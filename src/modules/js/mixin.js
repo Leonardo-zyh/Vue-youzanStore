@@ -1,4 +1,5 @@
 import Foot from '@/components/Foot.vue'
+//filters属性和底部导航栏组件的注入进行打包， mixins:[mixin]
 let mixin = {
     filters :{
         currency(price){

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import url from '@/modules/js/api.js'
+import url from './api.js'
 
-
+//购物车接口管理
 function fetch(url,data){
     return new Promise((resolve,reject)=>{
         axios.get(url,data).then(res=>{
