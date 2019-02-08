@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import Address from '@/modules/js/addressService.js'
+import Address from '@/modules/js/Address.js'
 
 // 创建Store实例
 const store = new Vuex.Store({
@@ -11,8 +11,9 @@ const store = new Vuex.Store({
         lists:null
     },
     mutations:{
-        init(state,lists){
-            state.lists = lists
+        init(state,list){
+            state.lists = list
+            
         },
         add(state,instance){
             state.lists.push(instance)
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
         },
         remove(state,id){
             let lists = state.lists
+            //返回索引
             let index = lists.findIndex(item=>{
                 return item.id ==id
             })
@@ -36,8 +38,8 @@ const store = new Vuex.Store({
         },
         setDefault(state,id){
             let lists = state.lists
-            lists.forEach(item => {              
-                item.isDefault=item.id == id ?true:false               
+            lists.forEach(item => {               
+                item.isDefault= item.id == id ?true:false               
             });
         },
 
@@ -45,7 +47,7 @@ const store = new Vuex.Store({
     actions:{
         getLists({commit}){
             Address.list().then(res=>{
-                commit('init',res.data.lists)                
+                commit('init',res.list)                
               })
         },
         addAction({commit},instance){

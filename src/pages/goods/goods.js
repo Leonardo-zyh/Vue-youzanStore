@@ -54,7 +54,6 @@ new Vue({
         })
       })
     },
-    //焦点状态切换
     changeTab(index) {
       this.tabIndex = index
       if (index === 1 && !this.salesList) {
@@ -83,17 +82,15 @@ new Vue({
         this.isLoading = false
       })
     },
-
-    chooseSku(type) {//显示购买菜单
+    chooseSku(type) {
       this.skuType = type
       this.showModal = true
     },
-    changeSku(num) {//增减数量
+    changeSku(num) {
       if (num < 0 && this.skuNum === 1) return
       this.skuNum += num
     },
-
-    addCart() {//加入购物车
+    addCart() {
       $.ajax($.url.cartAdd, {
         id,
         skuNum: this.skuNum

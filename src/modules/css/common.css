@@ -147,7 +147,7 @@ html {
 body {
   color: #333;
   background-color: #eee;
-  /* -webkit-backface-visibility: hidden */
+  -webkit-backface-visibility: hidden
 }
 
 body.body-fixed-bottom {
@@ -875,4 +875,6 @@ html {
   font-family: Helvetica, STHeiti STXihei, Microsoft YaHei, Tohoma, Arial
 }
 
- 
+[v-cloak] {
+  display: none;
+}

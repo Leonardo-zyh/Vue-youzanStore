@@ -1,77 +1,74 @@
-import '@/modules/css/common.css'
-import './index.css'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
+// import App from './App'
+// import router from './router'
+
 import Vue from 'vue'
-import axios from 'axios'
-Vue.prototype.$http = axios
-import url from '@/modules/js/api.js'
-import { InfiniteScroll } from 'mint-ui';
-Vue.use(InfiniteScroll);
-
-import Foot from '@/components/Foot'
-import Swipe from '@/components/Swipe'
-import bus from '@/modules/js/bus'
+import './index.css'
+import 'css/common.css'
+import $ from 'js/util'
+import {
+  InfiniteScroll
+} from 'mint-ui'
 
 
 
+import Carousel from 'components/carousel'
+// import BottomNav from 'components/BottomNav'
+import mixin from 'js/mixin'
+
+
+Vue.use(InfiniteScroll)
 Vue.config.productionTip = false
 
 
+/* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   // router,
+//   components: { App },
+//   template: '<App/>'
+// })
 
-  new Vue({
+new Vue({
   el: '#app',
-  data:{
-    lists:null,
-    pageNum:1,
-    loading:false,//加载数据
-    allLoaded:false,
-    pageSize:6,
-    bannerLists:null,
-    obj:{
-      age:21
-    }
+  data: {
+    hotList: [],
+    loading: false,
+    isFinished: false,
+    pageNum: 1,
+    pageSize: 6,
+    banners: []
   },
-  created() {
-    this.getLists()
-    this.getBanner()
-    bus.$on('change',(age)=>{      
-      this.obj.age = age
-    })
+  components: {
+    Carousel,
+    // BottomNav
   },
-  methods:{
-    changeAge(){
-      this.obj.age = age
+  methods: {
+    getHotList() {
+      if (this.isFinished) return
+      this.loading = true
+      $.ajax($.url.hotList, {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize
+      }).then(data => {
+        const list = data.list;
+        this.hotList = this.hotList.concat(list)
+        this.pageNum++;
+        if (list.length < this.pageSize) this.isFinished = true
+        this.loading = false
+      })
     },
-    getLists(){
-    if(this.allLoaded) return
-    this.loading = true//开始请求
-
-    this.$http.get(url.hotLists,{
-      pageNum:this.pageNum,
-      pageSize:this.pageSize,
-    }).then(res=>{
-      let curLists = res.data.lists
-      //判断所以数据是否加载完毕 
-      if(curLists.length < this.pageSize ){
-        this.allLoaded = true
-      }
-      if(this.lists){
-        this.lists = this.lists.concat(curLists)
-      }else{
-        this.lists = curLists
-      }
-      this.loading = false//结束请求
-      this.pageNum +=1
-    })
-    },
-    getBanner(){//轮播数据
-      this.$http.get(url.banner).then(res=>{
-        this.bannerLists = res.data.lists
-        
+    getBanners() {
+      $.ajax($.url.banners).then((data) => {
+        this.banners = data.list
       })
     }
   },
-  components: { Foot,Swipe },
-
+  created() {
+    this.getHotList()
+    this.getBanners()
+  },
+  mixins: [mixin]
 })

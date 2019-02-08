@@ -319,7 +319,7 @@ img {
 .goods-item .detail .title {
   padding-bottom: 8px;
   font-size: 12px;
-  line-height: 1;
+  line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden
@@ -699,7 +699,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 .empty-item-block .empty-item-go {
   margin-top: 20px;
-  display: inline-block!important;
+  display: inline-block !important;
   padding: 8px 20px;
   border: 1px solid #ff5050;
   color: #ff5050;
@@ -931,7 +931,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 }
 
 .none-float {
-  float: none!important
+  float: none !important
 }
 
 .btn-goto-shop {
@@ -1071,7 +1071,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 }
 
 .go-to-top {
-  /* display: none; */
+  display: none;
   position: fixed;
   right: 15px;
   bottom: 60px;

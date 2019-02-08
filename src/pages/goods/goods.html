@@ -23,6 +23,7 @@
     [v-cloak] {
       display: none
     }
+
   </style>
 </head>
 
@@ -129,13 +130,13 @@
                 </div>
                 <!-- 商家自定义的商品介绍内容 -->
                 <div class="js-part js-goods-detail goods-tabber-c" v-html="detail.description" v-show="tabIndex === 0">
-                  <div class="price-intro">
+                  <!-- <div class="price-intro">
                       <h4>划线价格说明
                         <i class="icon-arrow"></i>
                       </h4>
                       <p>划线价格：划线的价格可能是商品的专柜价、吊牌价、正品零售价、指导价、曾经展示过的销售价等，仅供您参考。</p>
                       <p>未划线价格：未划线的价格是商品的销售标价，具体的成交价格可能因会员使用优惠券、积分等发生变化，最终以订单结算价格为准。 </p>
-                      <p>*此说明仅当出现价格比较时有效。若这件商品针对划线价格进行了特殊说明，以特殊说明为准。</p>
+                      <p>*此说明仅当出现价格比较时有效。若这件商品针对划线价格进行了特殊说明，以特殊说明为准。</p> -->
                 </div>
               </div>
             </div>
@@ -222,8 +223,6 @@
               <a href="https://h5.youzan.com/v2/showcase/usercenter?kdt_id=16546132" target="_blank">会员中心</a>
               <a href="javascript:;" class="js-open-follow">关注我们</a>
               <a href="https://h5.youzan.com/v2/showcase/cert" target="_blank">店铺信息</a>
-
-              
               <!-- 第三方app隐藏topbar时，需要在底部显示购物记录入口 -->
             </div>
             <div class="ft-copyright " style="background-image: url(https://img.yzcdn.cn/upload_files/2017/06/16/FgtL3QzprXTGrVPaolozNT08Xs2K.png);">
@@ -275,7 +274,6 @@
               </dt>
               <dd class="sku-quantity-contaienr">
                 <dl class="clearfix">
-                  <!-- 购买数量选择 -->
                   <div class="quantity">
                     <button class="minus" type="button" :disabled="skuNum === 1" :class="{disabled: skuNum === 1}"></button>
                     <input type="text" class="txt" pattern="[0-9]*" v-model.number="skuNum">
@@ -286,7 +284,7 @@
                 </dl>
               </dd>
               <dt class="other-info">
-                <div class="stock">剩余{{detail.remain-skuNum}}件
+                <div class="stock">剩余{{detail.remain}}件
                 </div>
               </dt>
             </dl>

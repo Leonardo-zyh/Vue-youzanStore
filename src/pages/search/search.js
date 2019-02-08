@@ -1,48 +1,68 @@
-import '@/modules/css/common.css'
-import './search.css'
+import "css/common.css";
+import "./search.css";
+import Vue from "vue";
+import url from "url";
+import $ from "js/util";
+import mixin from "js/mixin";
 
-
-import Vue from 'vue'
-import axios from 'axios'
-// Vue.prototype.$http = axios
-import url from '@/modules/js/api.js'
-import qs from 'qs'
-import mixin from '@/modules/js/mixin.js'
-import Velocity from '_velocity-animate@1.5.2@velocity-animate/velocity.js'
-
-let {keyword,id} = qs.parse(location.search.substr(1))
+const {
+  keyword,
+  id
+} = url.parse(location.href, true).query;
 
 new Vue({
-    el:'.container',
-    data:{
-        searchList:null,
-        keyword,
-        isShow:false
+  el: ".container",
+  data: {
+    searchList: [],
+    isLoading: false,
+    isFinished: false,
+    pageNum: 0,
+    pageSize: 6,
+    keyword,
+    isShow: false
+  },
+  methods: {
+    getSearchList() {
+      if (this.isLoading || this.isFinished) return;
+      this.isLoading = true;
+      $.ajax(`${$.url.searchList}?keyword=${keyword}&id=${id}`).then(data => {
+        const list = data.list;
+        this.searchList = this.searchList.concat(list);
+        this.pageNum++;
+        if (list.length < this.pageSize) this.isFinished = true;
+        this.isLoading = false;
+      });
     },
-    created(){
-        this.getSearchList()
-       
+    loadMore() {
+      if (
+        window.pageYOffset + window.innerHeight + 200 >=
+        document.body.scrollHeight
+      ) {
+        this.getSearchList();
+      }
     },
-    methods:{
-        getSearchList(){
-            axios.get(url.searchList,{keyword,id}).then(res=>{
-                this.searchList = res.data.lists
-                // console.log(res);
-                
-            })
-        },
-        move(){//滚动展现
-            if(document.documentElement.scrollTop > 100){
-                this.isShow = true
-            }else{
-                this.isShow = false
-            }         
-        },
-        toTop(){
-            Velocity(document.documentElement,'scroll',{duration:500})
-            this.isShow=false //回到顶部图标消失
-        }
-
+    showToTop() {
+      this.isShow = window.pageYOffset > 100 ? true : false;
     },
-    mixins:[mixin]
-})
+    toTop() {
+      $.scrollToTop(400);
+      this.isShow = false;
+    },
+    url(item){
+      if(!item.isOut){
+        window.location.href='goods.html?id='+item.id
+      }
+      
+    }
+  },
+  created() {
+    this.getSearchList();
+  },
+  computed:{
+    url(){
+        'goods.html?id='+this.item.id
+      
+    },
+  },
+  mixins: [mixin]
+});

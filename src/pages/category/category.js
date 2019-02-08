@@ -1,53 +1,51 @@
-import '@/modules/css/common.css'
-import './category.css'
-
 import Vue from 'vue'
-import axios from 'axios'
-// import Foot from '@/components/Foot.vue'
-import url from '@/modules/js/api.js'
-import mixin from '@/modules/js/mixin.js'
-Vue.config.productionTip = false;
+import 'css/common.css'
+import './category.css'
+import $ from 'js/util'
+// import BottomNav from 'components/BottomNav'
+import mixin from 'js/mixin'
+
+import {
+  isPrimitive
+} from 'util'
 
 new Vue({
-    el:'#app',
-    data:{
-        topLists:null,
-        topIndex:0,
-        subData:null,
-        rankData:null,
-        
+  el: '#app',
+  data: {
+    topCategory: [],
+    categoryIndex: 0,
+    rankData: null,
+    subCategory: {}
+  },
+  methods: {
+    getTopCategory() {
+      $.ajax($.url.topCategory).then((data) => {
+        this.topCategory = data.list
+      })
     },
-    created(){
-        this.getTopList()
-        this.getSublist(0,0)
+    changeCategory(index, item) {
+      this.categoryIndex = index
+      if (index === 0) {
+        this.getRankData()
+      } else {
+        this.getSubCategory(item.id)
+      }
     },
-    methods:{
-        getTopList(){
-            axios.get(url.topList).then(res=>{
-                this.topLists = res.data.lists
-                // console.log(res);                
-            })
-        },
-        getSublist(id,index){
-            this.topIndex = index
-            if(index===0){
-                this.getRank()
-            }else{
-                axios.get(url.subList,{id}).then(res=>{
-                    this.subData = res.data.data
-                })
-            }
-        },
-        getRank(){
-            axios.get(url.rank).then(res=>{                
-                this.rankData = res.data.data
-            })
-        },
-        toSearch(list){
-            location.href = `search.html?keyword=${list.name}&id=${list.id}`
-        }
-    
+    getRankData() {
+      $.ajax($.url.rank).then(data => this.rankData = data.data)
     },
-    mixins:[mixin]
-    
+    getSubCategory(id) {
+      $.ajax($.url.subCategory, {
+        id
+      }).then(data => this.subCategory = data.data)
+    },
+    search(item) {
+      location.href = `search.html?keyword=${item.name}&id=${item.id}`
+    }
+  },
+  created() {
+    this.getTopCategory()
+    this.getRankData()
+  },
+  mixins: [mixin]
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="container " style="min-height: 597px;">
+    <div class="container " style="min-height: 597px;" v-cloak>
     <div class="block-list address-list section section-first js-no-webview-block" v-if="lists&&lists.length">
       <a class="block-item js-address-item address-item "
         v-for="list in lists" :key="list.id"
@@ -22,23 +22,14 @@
   </div>
 </template>
 <script>
-// import Address from '@/modules/js/addressService.js'
+// import Address from './js/Address.js'
 export default {
-  // data() {
-  //   return{
-  //     lists:null
-  //   }
-  // },
-  computed:{
+   computed:{
     lists(){
       return this.$store.state.lists
     }
   },
   created(){
-    // Address.list().then(res=>{
-    //   this.lists = res.data.lists
-    //    console.log(res);      
-    // })
     if(!this.lists){
       this.$store.dispatch('getLists')
     }
@@ -53,10 +44,14 @@ export default {
       } });
     }
   }
+
 };
 </script>
 
 
 <style scoped>
+[v-cloak] {
+  display: none;
+}
 </style>
 
