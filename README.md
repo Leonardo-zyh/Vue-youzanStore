@@ -7,6 +7,6 @@
 
 * 项目博客：https://www.cnblogs.com/gitnull/p/10269654.html
 
-* 项目预览二维码：
+* 项目预览二维码：https://leonardo-zyh.github.io/Vue-youzanStore/dist/index.html
 <br/>
 <img src="./二维码.png"></img>
